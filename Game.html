@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> Rainbow Yahtzee Game </title>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="initial-scale=1.25"/>
+	<link rel="stylesheet" href="Style.css"/>
+	<script src="GameCode.js"></script>
+	<script src="Tabs.js"></script>
+</head>
+<body>
+	<header>
+		<img id="title" src="Graphics/title.png" alt="Rainbow Yahtzee"/>
+	</header>
+	
+	<main id="menu-main">
+		<img id="outer-border" src="Graphics/Border3.png" alt=""/>
+		<img id="regular" class="header" src="Graphics/Standard.png" alt="Standard"/>
+		<div id="standard">
+			<button class="button overlay" onclick="setup(1)">
+				<img class="button underlay" src="Graphics/1PR.png" alt="1 Player"/>
+			</button>
+			
+			<button class="button overlay" onclick="setup(2)">
+				<img class="button underlay" src="Graphics/2PR.png" alt="2 Player"/>
+			</button>
+			
+			<button class="button overlay" onclick="setup(3)">
+				<img class="button underlay" src="Graphics/3PR.png" alt="3 Player"/>
+			</button>
+			
+			<button class="button overlay" onclick="setup(4)">
+				<img class="button underlay" src="Graphics/4PR.png" alt="4 Player"/>
+			</button>
+		</div>
+		
+		<img id="outer-border2" src="Graphics/Border3.png" alt=""/>
+		<img id="rainbow2" class="header" src="Graphics/Rainbow.png" alt="Rainbow"/>
+		<div id="rainbow">
+			<button class="button overlay" onclick="setup(5)">
+				<img class="button underlay" src="Graphics/1PC.png" alt="1 Player"/>
+			</button>
+			
+			<button class="button overlay" onclick="setup(6)">
+				<img class="button underlay" src="Graphics/2PC.png" alt="2 Player"/>
+			</button>
+			
+			<button class="button overlay" onclick="setup(7)">
+				<img class="button underlay" src="Graphics/3PC.png" alt="3 Player"/>
+			</button>
+			
+			<button class="button overlay" onclick="setup(8)">
+				<img class="button underlay" src="Graphics/4PC.png" alt="4 Player"/>
+			</button>
+		</div>
+	</main>
+
+	<main id="game-main">
+		<div id="top">
+			<a id="back" href="Game.html"> 
+				<img id="back-button" src="Graphics/Back.png" alt="Back"/>
+			</a>
+			
+			<img class="shadow" src="Graphics/Spot.png" alt=""/>
+			<img class="shadow" src="Graphics/Spot.png" alt=""/>
+			<img class="shadow" src="Graphics/Spot.png" alt=""/>
+			<img class="shadow" src="Graphics/Spot.png" alt=""/>
+			<img class="shadow" src="Graphics/Spot.png" alt=""/>
+			
+			<div id="dice-holder">
+				<img id="D1" class="dice" src="Graphics/Dice/6.png" alt="" onclick="holdD1()"/>
+				<img id="D2" class="dice" src="Graphics/Dice/6.png" alt="" onclick="holdD2()"/>
+				<img id="D3" class="dice" src="Graphics/Dice/6.png" alt="" onclick="holdD3()"/>
+				<img id="D4" class="dice" src="Graphics/Dice/6.png" alt="" onclick="holdD4()"/>
+				<img id="D5" class="dice" src="Graphics/Dice/6.png" alt="" onclick="holdD5()"/>
+			</div>
+			
+			<div id="roll-number"> </div>
+			<img id="shake" src="Graphics/Shake.png" alt="Roll" onclick="rollD1()">
+		</div>
+		
+		<div id="bottom">
+			<div id="player1-tab" class="tab current" onclick="change(); showTab(0)"> P 1 </div>
+			
+			<div id="player2-tab" class="tab not-playing" onclick="change(); showTab(1)"> P 2 </div>
+			
+			<div id="player3-tab" class="tab not-playing" onclick="change(); showTab(2)"> P 3 </div>
+			
+			<div id="player4-tab" class="tab not-playing" onclick="change(); showTab(3)"> P 4 </div>
+		
+			<div id="player1" class="tab-area current-area">
+				<div class="score-summary">
+					<div class="top-summary"> Top = <p id="P1-top"> </p> <p id="P1-bonus"> (+35) </p> </div>
+					<div class="bottom-summary"> Bottom = <p id="P1-bottom"> </p> </div>
+					<div class="total-summary"> Total = <p id="P1-total-summary"> </p> </div>
+				</div>
+				<div class="top-table">
+					<div class="score-holder"> <img id="P1-1s" class="scores" src="Graphics/1s.png" alt="1s" onclick="place1s()"/> 
+						<p id="P1-1s-holder" class="number-holder"> </p>
+						<div id="P1-1s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P1-2s" class="scores" src="Graphics/2s.png" alt="2s" onclick="place2s()"/> 
+						<p id="P1-2s-holder" class="number-holder"> </p>
+						<div id="P1-2s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P1-3s" class="scores" src="Graphics/3s.png" alt="3s" onclick="place3s()"/> 
+						<p id="P1-3s-holder" class="number-holder"> </p> 
+						<div id="P1-3s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P1-4s" class="scores" src="Graphics/4s.png" alt="4s" onclick="place4s()"/>
+						<p id="P1-4s-holder" class="number-holder"> </p>
+						<div id="P1-4s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P1-5s" class="scores" src="Graphics/5s.png" alt="5s" onclick="place5s()"/> 
+						<p id="P1-5s-holder" class="number-holder"> </p>
+						<div id="P1-5s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P1-6s" class="scores" src="Graphics/6s.png" alt="6s" onclick="place6s()"/>
+						<p id="P1-6s-holder" class="number-holder"> </p>
+						<div id="P1-6s-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+				
+				<div class="middle-table">
+					<div class="score-holder"> <img id="P1-3x" class="scores" src="Graphics/3x.png" alt="3x" onclick="place3x()"/>
+						<p id="P1-3x-holder" class="number-holder"> </p>
+						<div id="P1-3x-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P1-4x" class="scores" src="Graphics/4x.png" alt="4x" onclick="place4x()"/> 
+						<p id="P1-4x-holder" class="number-holder"> </p>
+						<div id="P1-4x-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P1-FH" class="scores" src="Graphics/FH.png" alt="FH" onclick="placeFH()"/> 
+						<p id="P1-FH-holder" class="number-holder"> </p>
+						<div id="P1-FH-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P1-LS" class="scores" src="Graphics/LS.png" alt="LS" onclick="placeLS()"/> 
+						<p id="P1-LS-holder" class="number-holder"> </p>
+						<div id="P1-LS-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P1-HS" class="scores" src="Graphics/HS.png" alt="HS" onclick="placeHS()"/> 
+						<p id="P1-HS-holder" class="number-holder"> </p>
+						<div id="P1-HS-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P1-C" class="scores" src="Graphics/C.png" alt="C" onclick="placeC()"/> 
+						<p id="P1-C-holder" class="number-holder"> </p>
+						<div id="P1-C-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+				
+				<div id="P1-reg" class="bottom-table"> 
+					<div class="Y-holder"> <img id="P1-Y" src="Graphics/Yahtzee.png" alt="Y" onclick="placeY()"/> 
+						<p id="P1-Y-holder" class="number-holder"> </p>
+						<div id="P1-Y-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+				
+				<div id="P1-rain" class="bottom-table">
+					<div class="score-holder"> <img id="P1-Yh" class="scores" src="Graphics/Y.png" alt="Y" onclick="placeYh()"/> 
+						<p id="P1-Yh-holder" class="number-holder"> </p>
+						<div id="P1-Yh-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P1-CY" class="scores" src="Graphics/CY.png" alt="C" onclick="placeCY()"/> 
+						<p id="P1-CY-holder" class="number-holder"> </p>
+						<div id="P1-CY-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P1-MY" class="scores" src="Graphics/MY.png" alt="C" onclick="placeMY()"/> 
+						<p id="P1-MY-holder" class="number-holder"> </p>
+						<div id="P1-MY-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P1-GY" class="scores" src="Graphics/GY.png" alt="C" onclick="placeGY()"/> 
+						<p id="P1-GY-holder" class="number-holder"> </p>
+						<div id="P1-GY-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P1-RH" class="scores" src="Graphics/RH.png" alt="C" onclick="placeRH()"/> 
+						<p id="P1-RH-holder" class="number-holder"> </p>
+						<div id="P1-RH-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="player2" class="tab-area">
+				<div class="top-summary"> Top = <p id="P2-top"> </p> <p id="P2-bonus"> (+35) </p> </div>
+				<div class="bottom-summary"> Bottom = <p id="P2-bottom"> </p> </div>
+				<div class="total-summary"> Total = <p id="P2-total-summary"> </p> </div>
+				<div class="top-table">
+					<div class="score-holder"> <img id="P2-1s" class="scores" src="Graphics/1s.png" alt="1s" onclick="place1s()"/> 
+						<p id="P2-1s-holder" class="number-holder"> </p>
+						<div id="P2-1s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P2-2s" class="scores" src="Graphics/2s.png" alt="2s" onclick="place2s()"/> 
+						<p id="P2-2s-holder" class="number-holder"> </p>
+						<div id="P2-2s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P2-3s" class="scores" src="Graphics/3s.png" alt="3s" onclick="place3s()"/> 
+						<p id="P2-3s-holder" class="number-holder"> </p> 
+						<div id="P2-3s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P2-4s" class="scores" src="Graphics/4s.png" alt="4s" onclick="place4s()"/>
+						<p id="P2-4s-holder" class="number-holder"> </p>
+						<div id="P2-4s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P2-5s" class="scores" src="Graphics/5s.png" alt="5s" onclick="place5s()"/> 
+						<p id="P2-5s-holder" class="number-holder"> </p>
+						<div id="P2-5s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P2-6s" class="scores" src="Graphics/6s.png" alt="6s" onclick="place6s()"/>
+						<p id="P2-6s-holder" class="number-holder"> </p>
+						<div id="P2-6s-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+				
+				<div class="middle-table">
+					<div class="score-holder"> <img id="P2-3x" class="scores" src="Graphics/3x.png" alt="3x" onclick="place3x()"/>
+						<p id="P2-3x-holder" class="number-holder"> </p>
+						<div id="P2-3x-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P2-4x" class="scores" src="Graphics/4x.png" alt="4x" onclick="place4x()"/> 
+						<p id="P2-4x-holder" class="number-holder"> </p>
+						<div id="P2-4x-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P2-FH" class="scores" src="Graphics/FH.png" alt="FH" onclick="placeFH()"/> 
+						<p id="P2-FH-holder" class="number-holder"> </p>
+						<div id="P2-FH-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P2-LS" class="scores" src="Graphics/LS.png" alt="LS" onclick="placeLS()"/> 
+						<p id="P2-LS-holder" class="number-holder"> </p>
+						<div id="P2-LS-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P2-HS" class="scores" src="Graphics/HS.png" alt="HS" onclick="placeHS()"/> 
+						<p id="P2-HS-holder" class="number-holder"> </p>
+						<div id="P2-HS-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P2-C" class="scores" src="Graphics/C.png" alt="C" onclick="placeC()"/> 
+						<p id="P2-C-holder" class="number-holder"> </p>
+						<div id="P2-C-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+				
+				<div id="P2-reg" class="bottom-table"> 
+					<div class="Y-holder"> <img id="P2-Y" src="Graphics/Yahtzee.png" alt="Y" onclick="placeY()"/> 
+						<p id="P2-Y-holder" class="number-holder"> </p>
+						<div id="P2-Y-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+				
+				<div id="P2-rain" class="bottom-table">
+					<div class="score-holder"> <img id="P2-Yh" class="scores" src="Graphics/Y.png" alt="Y" onclick="placeYh()"/> 
+						<p id="P2-Yh-holder" class="number-holder"> </p>
+						<div id="P2-Yh-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P2-CY" class="scores" src="Graphics/CY.png" alt="C" onclick="placeCY()"/> 
+						<p id="P2-CY-holder" class="number-holder"> </p>
+						<div id="P2-CY-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P2-MY" class="scores" src="Graphics/MY.png" alt="C" onclick="placeMY()"/> 
+						<p id="P2-MY-holder" class="number-holder"> </p>
+						<div id="P2-MY-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P2-GY" class="scores" src="Graphics/GY.png" alt="C" onclick="placeGY()"/> 
+						<p id="P2-GY-holder" class="number-holder"> </p>
+						<div id="P2-GY-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P2-RH" class="scores" src="Graphics/RH.png" alt="C" onclick="placeRH()"/> 
+						<p id="P2-RH-holder" class="number-holder"> </p>
+						<div id="P2-RH-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="player3" class="tab-area">
+				<div class="top-summary"> Top = <p id="P3-top"> </p> <p id="P3-bonus"> (+35) </p> </div>
+				<div class="bottom-summary"> Bottom = <p id="P3-bottom"> </p> </div>
+				<div class="total-summary"> Total = <p id="P3-total-summary"> </p> </div>
+				<div class="top-table">
+					<div class="score-holder"> <img id="P3-1s" class="scores" src="Graphics/1s.png" alt="1s" onclick="place1s()"/> 
+						<p id="P3-1s-holder" class="number-holder"> </p>
+						<div id="P3-1s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P3-2s" class="scores" src="Graphics/2s.png" alt="2s" onclick="place2s()"/> 
+						<p id="P3-2s-holder" class="number-holder"> </p>
+						<div id="P3-2s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P3-3s" class="scores" src="Graphics/3s.png" alt="3s" onclick="place3s()"/> 
+						<p id="P3-3s-holder" class="number-holder"> </p> 
+						<div id="P3-3s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P3-4s" class="scores" src="Graphics/4s.png" alt="4s" onclick="place4s()"/>
+						<p id="P3-4s-holder" class="number-holder"> </p>
+						<div id="P3-4s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P3-5s" class="scores" src="Graphics/5s.png" alt="5s" onclick="place5s()"/> 
+						<p id="P3-5s-holder" class="number-holder"> </p>
+						<div id="P3-5s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P3-6s" class="scores" src="Graphics/6s.png" alt="6s" onclick="place6s()"/>
+						<p id="P3-6s-holder" class="number-holder"> </p>
+						<div id="P3-6s-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+				
+				<div class="middle-table">
+					<div class="score-holder"> <img id="P3-3x" class="scores" src="Graphics/3x.png" alt="3x" onclick="place3x()"/>
+						<p id="P3-3x-holder" class="number-holder"> </p>
+						<div id="P3-3x-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P3-4x" class="scores" src="Graphics/4x.png" alt="4x" onclick="place4x()"/> 
+						<p id="P3-4x-holder" class="number-holder"> </p>
+						<div id="P3-4x-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P3-FH" class="scores" src="Graphics/FH.png" alt="FH" onclick="placeFH()"/> 
+						<p id="P3-FH-holder" class="number-holder"> </p>
+						<div id="P3-FH-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P3-LS" class="scores" src="Graphics/LS.png" alt="LS" onclick="placeLS()"/> 
+						<p id="P3-LS-holder" class="number-holder"> </p>
+						<div id="P3-LS-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P3-HS" class="scores" src="Graphics/HS.png" alt="HS" onclick="placeHS()"/> 
+						<p id="P3-HS-holder" class="number-holder"> </p>
+						<div id="P3-HS-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P3-C" class="scores" src="Graphics/C.png" alt="C" onclick="placeC()"/> 
+						<p id="P3-C-holder" class="number-holder"> </p>
+						<div id="P3-C-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+					
+				<div id="P3-reg" class="bottom-table"> 
+					<div class="Y-holder"> <img id="P3-Y" src="Graphics/Yahtzee.png" alt="Y" onclick="placeY()"/> 
+						<p id="P3-Y-holder" class="number-holder"> </p>
+						<div id="P3-Y-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+				
+				<div id="P3-rain" class="bottom-table">
+					<div class="score-holder"> <img id="P3-Yh" class="scores" src="Graphics/Y.png" alt="Y" onclick="placeYh()"/> 
+						<p id="P3-Yh-holder" class="number-holder"> </p>
+						<div id="P3-Yh-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P3-CY" class="scores" src="Graphics/CY.png" alt="C" onclick="placeCY()"/> 
+						<p id="P3-CY-holder" class="number-holder"> </p>
+						<div id="P3-CY-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P3-MY" class="scores" src="Graphics/MY.png" alt="C" onclick="placeMY()"/> 
+						<p id="P3-MY-holder" class="number-holder"> </p>
+						<div id="P3-MY-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P3-GY" class="scores" src="Graphics/GY.png" alt="C" onclick="placeGY()"/> 
+						<p id="P3-GY-holder" class="number-holder"> </p>
+						<div id="P3-GY-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P3-RH" class="scores" src="Graphics/RH.png" alt="C" onclick="placeRH()"/> 
+						<p id="P3-RH-holder" class="number-holder"> </p>
+						<div id="P3-RH-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="player4" class="tab-area">
+				<div class="top-summary"> Top = <p id="P4-top"> </p> <p id="P4-bonus"> (+35) </p> </div>
+				<div class="bottom-summary"> Bottom = <p id="P4-bottom"> </p> </div>
+				<div class="total-summary"> Total = <p id="P4-total-summary"> </p> </div>
+				<div class="top-table">
+					<div class="score-holder"> <img id="P4-1s" class="scores" src="Graphics/1s.png" alt="1s" onclick="place1s()"/> 
+						<p id="P4-1s-holder" class="number-holder"> </p>
+						<div id="P4-1s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P4-2s" class="scores" src="Graphics/2s.png" alt="2s" onclick="place2s()"/> 
+						<p id="P4-2s-holder" class="number-holder"> </p>
+						<div id="P4-2s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P4-3s" class="scores" src="Graphics/3s.png" alt="3s" onclick="place3s()"/> 
+						<p id="P4-3s-holder" class="number-holder"> </p> 
+						<div id="P4-3s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P4-4s" class="scores" src="Graphics/4s.png" alt="4s" onclick="place4s()"/>
+						<p id="P4-4s-holder" class="number-holder"> </p>
+						<div id="P4-4s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P4-5s" class="scores" src="Graphics/5s.png" alt="5s" onclick="place5s()"/> 
+						<p id="P4-5s-holder" class="number-holder"> </p>
+						<div id="P4-5s-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P4-6s" class="scores" src="Graphics/6s.png" alt="6s" onclick="place6s()"/>
+						<p id="P4-6s-holder" class="number-holder"> </p>
+						<div id="P4-6s-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+				
+				<div class="middle-table">
+					<div class="score-holder"> <img id="P4-3x" class="scores" src="Graphics/3x.png" alt="3x" onclick="place3x()"/>
+						<p id="P4-3x-holder" class="number-holder"> </p>
+						<div id="P4-3x-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P4-4x" class="scores" src="Graphics/4x.png" alt="4x" onclick="place4x()"/> 
+						<p id="P4-4x-holder" class="number-holder"> </p>
+						<div id="P4-4x-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P4-FH" class="scores" src="Graphics/FH.png" alt="FH" onclick="placeFH()"/> 
+						<p id="P4-FH-holder" class="number-holder"> </p>
+						<div id="P4-FH-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P4-LS" class="scores" src="Graphics/LS.png" alt="LS" onclick="placeLS()"/> 
+						<p id="P4-LS-holder" class="number-holder"> </p>
+						<div id="P4-LS-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P4-HS" class="scores" src="Graphics/HS.png" alt="HS" onclick="placeHS()"/> 
+						<p id="P4-HS-holder" class="number-holder"> </p>
+						<div id="P4-HS-score" class="number-holder score-place"> </div>
+					</div>
+					<div class="score-holder"> <img id="P4-C" class="scores" src="Graphics/C.png" alt="C" onclick="placeC()"/> 
+						<p id="P4-C-holder" class="number-holder"> </p>
+						<div id="P4-C-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+				
+				<div id="P4-reg" class="bottom-table"> 
+					<div class="Y-holder"> <img id="P4-Y" src="Graphics/Yahtzee.png" alt="Y" onclick="placeY()"/> 
+						<p id="P4-Y-holder" class="number-holder"> </p>
+						<div id="P4-Y-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+				
+				<div id="P4-rain" class="bottom-table">
+					<div class="score-holder"> <img id="P4-Yh" class="scores" src="Graphics/Y.png" alt="Y" onclick="placeYh()"/> 
+						<p id="P4-Yh-holder" class="number-holder"> </p>
+						<div id="P4-Yh-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P4-CY" class="scores" src="Graphics/CY.png" alt="C" onclick="placeCY()"/> 
+						<p id="P4-CY-holder" class="number-holder"> </p>
+						<div id="P4-CY-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P4-MY" class="scores" src="Graphics/MY.png" alt="C" onclick="placeMY()"/> 
+						<p id="P4-MY-holder" class="number-holder"> </p>
+						<div id="P4-MY-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P4-GY" class="scores" src="Graphics/GY.png" alt="C" onclick="placeGY()"/> 
+						<p id="P4-GY-holder" class="number-holder"> </p>
+						<div id="P4-GY-score" class="number-holder score-place"> </div>
+					</div>
+					
+					<div class="score-holder"> <img id="P4-RH" class="scores" src="Graphics/RH.png" alt="C" onclick="placeRH()"/> 
+						<p id="P4-RH-holder" class="number-holder"> </p>
+						<div id="P4-RH-score" class="number-holder score-place"> </div>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+		<audio id="rollDice">
+			<source src="Roll.mp3" type="audio/mpeg">
+		</audio>
+	</main>
+	
+	<div id="final-scores">
+		<img id="inner-table-border" src="Graphics/Border3.png" alt=""/>
+			<div id="inner-table">
+			<img id="total-image" src="Graphics/Total.png" alt="Total"/>
+			<div id="header-row" class="player-total"> 
+				<div class="top-total header-row"> Top Total </div>
+				<div class="bottom-total header-row"> Bottom Total </div>
+				<div class="total-total total-row"> Total </div>
+			</div>
+			<div id="P1-total" class="player-total">
+				<img class="icon" src="Graphics/1PR.png" alt="Player 1"/>
+				<div id="P1-top-total" class="top-total"> </div>
+				<div id="P1-bottom-total" class="bottom-total"> </div>
+				<div id="P1-total-total" class="total-total"> </div>
+			</div>
+			<div id="P2-total" class="player-total hidden-score">
+				<img class="icon" src="Graphics/2PR.png" alt="Player 2"/>
+				<div id="P2-top-total" class="top-total"> </div>
+				<div id="P2-bottom-total" class="bottom-total"> </div>
+				<div id="P2-total-total" class="total-total"> </div>
+			</div>
+			<div id="P3-total" class="player-total hidden-score">
+				<img class="icon" src="Graphics/3PR.png" alt="Player 3"/>
+				<div id="P3-top-total" class="top-total"> </div>
+				<div id="P3-bottom-total" class="bottom-total"> </div>
+				<div id="P3-total-total" class="total-total"> </div>
+			</div>
+			<div id="P4-total" class="player-total hidden-score">
+				<img class="icon" src="Graphics/4PR.png" alt="Player 4"/>
+				<div id="P4-top-total" class="top-total"> </div>
+				<div id="P4-bottom-total" class="bottom-total"> </div>
+				<div id="P4-total-total" class="total-total"> </div>
+			</div>
+		</div>
+		<img id="close-button" src="Graphics/Close.png" alt="Close" onclick="window.location.reload()"/>
+	</div>
+</body>
+</html>

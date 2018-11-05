@@ -1,0 +1,560 @@
+@import "Reset.css";
+
+#P1-Y, #P2-Y, #P3-Y, #P4-Y {
+	position: absolute;
+	width: auto;
+	height: 30px;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.number-holder {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	height: 20px;
+	z-index: 3;
+	color: lime;
+}
+
+.score-place {
+	z-index: 4;
+	display: none;
+	color: white;
+}
+
+body {
+	height: 500px;
+	width: 300px;
+	background: url('Graphics/Background.png');
+	background-repeat: no-repeat;
+	font-family: Arial, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	overflow: hidden;
+}
+
+div#final-scores {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 510px;
+	width: 305px;
+	background-color: rgba(0,0,0,0.9);
+	z-index: 7;
+	display: none;
+}
+
+div#final-scores img#total-image {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 10px;
+	height: 20px;
+	width: auto;
+}
+
+div#final-scores img#inner-table-border {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	height: 300px;
+	width: 250px;
+	z-index: 9;
+}
+
+div#final-scores div#inner-table {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	height: 300px;
+	width: 250px;
+	background: url('Graphics/Background.png');
+	background-repeat: no-repeat;
+	color: white;
+	overflow: hidden;
+	z-index: 8;
+}
+
+div#final-scores div#inner-table div#P1-total {
+	position: absolute;
+	top: 70px;
+}
+
+div#final-scores div#inner-table div#P2-total {
+	position: absolute;
+	top: 125px;
+	display: none;
+}
+
+div#final-scores div#inner-table div#P3-total {
+	position: absolute;
+	top: 180px;
+	display: none;
+}
+
+div#final-scores div#inner-table div#P4-total {
+	position: absolute;
+	top: 235px;
+	display: none;
+}
+
+div#final-scores div#inner-table div.player-total {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	height: 46px;
+	padding: 2px 0px;
+	width: 230px;
+}
+
+div#final-scores div#inner-table div.player-total div.bottom-total {
+	position: absolute;
+	width: 40px;
+	left: 120px;
+	text-align: center;
+	line-height: 46px;
+}
+
+div#final-scores div#inner-table div.player-total div.top-total {
+	position: absolute;
+	width: 50px;
+	left: 60px;
+	text-align: center;
+	line-height: 46px;
+}
+
+div#final-scores div#inner-table div.player-total div.total-total {
+	position: absolute;
+	width: 40px;
+	left: 180px;
+	text-align: center;
+	line-height: 46px;
+}
+
+div#final-scores div#inner-table div#header-row {
+	position: absolute;
+	top: 40px;
+	height: 30px;
+	text-align: center;
+}
+
+div#final-scores div#inner-table div#header-row div.header-row {
+	line-height: 15px;
+}
+
+div#final-scores div#inner-table div#header-row div.total-row {
+	line-height: 30px;
+}
+
+div#final-scores div#inner-table div.player-total img.icon {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	height: 42px;
+	width: 42px;
+}
+
+div#final-scores img#close-button {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 30px;
+	margin: auto;
+	width: 150px;
+	height: auto;
+	z-index: 10;
+}
+
+div#roll-number {
+	position: absolute;
+	right: 60px;
+	bottom: 0;
+	color: white;
+}
+
+div.hidden-scores {
+	display: none;
+}
+
+header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 300px;
+	height: 100px;
+}
+
+header img#title {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	height: 60px;
+	width: auto;
+}
+
+main {
+	position: absolute;
+	top: 100px;
+	left: 0;
+	width: 300px;
+	height: 400px;
+}
+
+main#menu-main {
+	display: block;
+}
+
+main#game-main {
+	display: none;
+}
+
+main .button {
+	width: 48px;
+	height: 48px;
+	margin: 8px;
+	outline: none;
+	background-color: rgba(0,0,0,0);
+	border: none;
+}
+
+main .overlay {
+	display: inline-block;
+	position: relative;
+	left: 17px;
+	top: 5px;
+	z-index: 3;
+}
+
+main .underlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	z-index: 2;
+}
+
+main#game-main a#back {
+	height: 30px;
+	width: 60px;
+	z-index: 2;
+}
+
+main div#bottom {
+	position: absolute;
+	top: 160px;
+	left: 0;
+	width: 300px;
+	height: 280px;
+	font-size: 10pt;
+	color: white;
+}
+
+main div#bottom div.top-table {
+	position: absolute;
+	top: 40px;
+	left: 10px;
+	width: 295px;
+}
+
+main div#bottom div.middle-table {
+	position: absolute;
+	top: 105px;
+	left: 10px;
+	width: 295px;
+}
+
+main div#bottom div.bottom-table {
+	position: absolute;
+	top: 170px;
+	left: 10px;
+	width: 295px;
+}
+
+main div#bottom div.Y-holder {
+	position: relative;
+	display: inline-block;
+	height: 60px;
+	width: 270px;
+	text-align: center;
+}
+
+main div#bottom div.score-holder {
+	position: relative;
+	display: inline-block;
+	height: 60px;
+	width: 42px;
+	text-align: center;
+}
+
+main div#bottom div.score-holder img.scores {
+	position: absolute;
+	width: 35px;
+	height: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+main div#dice-holder {
+	position: absolute;
+	top: -10px;
+	left: 0;
+	width: 300px;
+	height: 60px;
+	z-index: 3;
+}
+
+main div#rainbow {
+	position: absolute;
+	top: 240px;
+	width: 300px;
+}
+
+main div#standard {
+	position: absolute;
+	top: 60px;
+	width: 300px;
+}
+
+main div#top {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 300px;
+	height: 120px;
+	z-index: 2;
+}
+
+main div.tab {
+	position: relative;
+	top: -10px;
+	left: 5px;
+	display: inline-block;
+	width: 50px;
+	height: 0;
+	border-bottom: 20px solid grey;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	color: black;
+	text-align: center;
+	font-weight: bold;
+	line-height: 20px;
+	z-index: 4;
+}
+
+main div.current {
+	border-bottom: 20px solid white;
+	z-index: 5;
+}
+
+main div.tab-area {
+	position: absolute;
+	top: 10px;
+	left: 5px;
+	width: 290px;
+	display: none;
+	border-top: 2px solid white;
+}
+
+main div.current-area {
+	display: block;
+}
+
+main div.not-playing {
+	display: none;
+}
+
+main div.tab-area div.bottom-summary {
+	position: absolute;
+	top: 10px;
+	left: 105px;
+	color: white;
+	width: 90px;
+}
+
+main div.tab-area div.bottom-summary p{
+	display: inline;
+}
+
+p#P1-bonus {
+	color: lime;
+	display: none;
+}
+
+p#P2-bonus {
+	color: lime;
+	display: none;
+}
+
+p#P3-bonus {
+	color: lime;
+	display: none;
+}
+
+p#P4-bonus {
+	color: lime;
+	display: none;
+}
+
+main div.tab-area div.top-summary {
+	position: absolute;
+	top: 10px;
+	left: 5px;
+	color: white;
+	width: 90px;
+}
+
+main div.tab-area div.top-summary p {
+	display: inline;
+}
+
+main div.tab-area div.total-summary {
+	position: absolute;
+	top: 10px;
+	left: 205px;
+	color: white;
+	width: 90px;
+	height: 15px;
+}
+
+main div.tab-area div.total-summary p {
+	display: inline;
+}
+
+main img#back-button {
+	position: absolute;
+	top: -10px;
+	left: 10px;
+	width: 60px;
+	height: auto;
+	z-index: 7;
+}
+
+main img#D1 {
+	position: absolute;
+	top: 33px;
+	left: 28px;
+	z-index: 8;
+	display: none;
+}
+
+main img#D2 {
+	position: absolute;
+	top: 33px;
+	left: 83px;
+	z-index: 8;
+	display: none;
+}
+
+main img#D3 {
+	position: absolute;
+	top: 33px;
+	left: 138px;
+	z-index: 8;
+	display: none;
+}
+
+main img#D4 {
+	position: absolute;
+	top: 33px;
+	left: 193px;
+	z-index: 8;
+	display: none;
+}
+
+main img#D5 {
+	position: absolute;
+	top: 33px;
+	left: 247px;
+	z-index: 8;
+	display: none;
+}
+
+main img#outer-border {
+	position: absolute;
+	width: 290px;
+	height: 150px;
+	left: 5px;
+	top: 0px;
+	background-color: rgba(0,0,0,0.5);
+}
+
+main img#outer-border2 {
+	position: absolute;
+	width: 290px;
+	height: 150px;
+	left: 5px;
+	top: 185px;
+	background-color: rgba(0,0,0,0.5);
+}
+
+main img#rainbow2 {
+	top: 200px;
+}
+
+main img#regular {
+	top: 20px;
+}
+
+main img#shake {
+	position: absolute;
+	right: 5px;
+	bottom: -20px;
+	width: 50px;
+	height: auto;
+}
+
+main img.border {
+	width: 60px;
+	height: 60px;
+	margin: 2px;
+	position: relative;
+	display: inline-block;
+	left: -14px;
+	top: -9.5px;
+	z-index: 1;
+}
+
+main img.dice {
+	width: 34px;
+	height: 34px;
+}
+
+main img.header {
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: auto;
+	height: 15px;
+	width: auto;
+}
+
+main img.shadow {
+	position: relative;
+	display: inline-block;
+	top: -10px;
+	left: 20px;
+	width: 60px;
+	height: 60px;
+	margin: 20px -4.5px 5px;
+}
